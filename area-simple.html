@@ -1,0 +1,85 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=area-simple
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+  <style>
+    .btn, .input {
+      border-radius: 16px;
+      background: white;
+      border: 1px solid #4D88FF;
+      cursor: pointer;
+      color: #4D88FF;
+      padding: 12px 24px;
+      transition: all 0.2s;
+    }
+
+    .input {
+      color: gray;
+    }
+
+    .btn:hover, .btn-active {
+      color: white;
+      background: #4D88FF;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body style="height: 100%; margin: 0; padding: 24px 48px">
+  <div>
+    <div style="display: flex; width: 65%; justify-content: space-between; align-items: center; padding-bottom: 32px;">
+      <div>
+        <input id="start-date" class="input" type="date" />
+        <input id="end-date" class="input" type="date" />
+      </div>
+      <div>
+        <button id="yearBtn" class="btn" onclick="showByYear()">Yearly</button>
+        <button id="monthBtn" class="btn" onclick="showByMonth()">Monthly</button>
+        <button id="weekBtn" class="btn" onclick="showByWeek()">Weekly</button>
+        <button id="dayBtn" class="btn" onclick="showByDay()">Daily</button>
+      </div>
+    </div>
+    <div style="padding-bottom: 32px; display: flex">
+      <button id="btn-distributed" class="btn" style="margin-right: 8px" onclick="showDistributed()">Distributed</button>
+      <button id="btn-cumulative" class="btn" onclick="showCumulative()">Cumulative</button>
+    </div>
+    <div style="display: flex; justify-content: space-between">
+      <div style="flex: 1">
+        <div id="distributed-container" style="height: 600px; width: 100%; max-width: 1200px; margin: 0 auto;"></div>
+        <div id="cumulative-container" style="height: 600px; width: 100%; max-width: 1200px; margin: 0 auto;"></div>
+      </div>
+      <div style="width: 25%; height: 200px; margin-left: 32px; border-radius: 16px; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.25); padding: 1rem 2rem;">
+      </div>
+   </div>
+  </div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.min.js"></script>
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5.4.1/dist/extension/bmap.min.js"></script>
+  -->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+
+<script src="js/index.js"></script>
+</body>
+</html>
