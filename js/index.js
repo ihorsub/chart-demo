@@ -230,14 +230,49 @@ const getOptions = (data) => ({
             return [pt[0], '10%'];}
     },
     legend: {
+        data: [
+            {
+                name: 'Expected work time',
+                icon: 'circle'
+            },
+            {
+                name: 'Planned worked time',
+                icon: 'circle'
+            },
+            {
+                name: 'Worked time',
+                icon: 'circle'
+            },
+            {
+                name: 'Pool time planned',
+                icon: 'circle'
+            },
+            {
+                name: 'Worked pool time',
+                icon: 'circle'
+            },
+            {
+                name: 'Absence pool time',
+                icon: 'circle'
+            },
+            {
+                name: 'Absence pool time worked',
+                icon: 'circle'
+            },
+        ],
         left: 80,
-        top: 6,
+        textStyle: {
+            fontSize: 13
+        },
         orient: 'horizontal',
         width: 600,
+        emphasis: {
+            focus: 'series'
+        }
     },
     toolbox: {
         feature: {
-            saveAsImage: {}
+            saveAsImage: { show: true }
         }
     },
     xAxis: {
@@ -256,7 +291,7 @@ const getOptions = (data) => ({
         top: '14%',
         left: '3%',
         right: '4%',
-        bottom: '3%',
+        bottom: '6%',
         containLabel: true
     },
     dataZoom: data.dataZoom || [
@@ -264,10 +299,26 @@ const getOptions = (data) => ({
             type: 'inside',
             start: 0,
             end: 100,
+            // zoomLock: true,
+            // zoomOnMouseWheel: false,
+            // moveOnMouseMove: true,
+            // moveOnMouseWheel: true,
         },
         {
+            type: 'slider',
+            brushSelect: false,
+            realtime: true,
+            bottom: 0,
             start: 0,
+            handleSize: 30,
             end: 100,
+            height: 20,
+            showDetail: true,
+            fillerColor: '#e8e8e8',
+            backgroundColor: '#ffffff',
+            // zoomOnMouseWheel: false,
+            // moveOnMouseMove: true,
+            // moveOnMouseWheel: true,
         }
     ],
     series: [
@@ -275,11 +326,10 @@ const getOptions = (data) => ({
             name: 'Planned worked time',
             type: 'bar',
             barMaxWidth: 200,
+            // barMinWidth: 30,
+            categoryMinWidth: 30,
             barGap: '-100%',
             barCategoryGap: '30%',
-            emphasis: {
-                focus: 'series'
-            },
             itemStyle: {
                 normal: {
                     color: '#82abff',
@@ -297,9 +347,7 @@ const getOptions = (data) => ({
             name: 'Worked time',
             type: 'bar',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
+            // barMinWidth: 30,
             itemStyle: {
                 normal: {
                     color: '#4D88FF',
@@ -317,9 +365,7 @@ const getOptions = (data) => ({
             name: 'Pool time planned',
             type: 'bar',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
+            // barMinWidth: 30,
             itemStyle: {
                 normal: {
                     color: '#ff5d95',
@@ -337,9 +383,7 @@ const getOptions = (data) => ({
             name: 'Worked pool time',
             type: 'bar',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
+            // barMinWidth: 30,
             itemStyle: {
                 normal: {
                     color: '#ffaecb',
@@ -357,9 +401,7 @@ const getOptions = (data) => ({
             name: 'Absence pool time',
             type: 'bar',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
+            // barMinWidth: 30,
             itemStyle: {
                 normal: {
                     color: '#FFC31F',
@@ -377,9 +419,6 @@ const getOptions = (data) => ({
             name: 'Absence pool time worked',
             type: 'bar',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
             itemStyle: {
                 normal: {
                     color: '#ffde84',
@@ -397,9 +436,7 @@ const getOptions = (data) => ({
             name: 'Expected work time',
             type: 'line',
             barMaxWidth: 200,
-            emphasis: {
-                focus: 'series'
-            },
+            // barMinWidth: 30,
             itemStyle: {
                 color: 'black'
             },
@@ -434,17 +471,32 @@ const getCumulativeOptions = (data) => {
                 type: 'inside',
                 start: 0,
                 end: 100,
+                // zoomLock: true,
+                // zoomOnMouseWheel: false,
+                // moveOnMouseMove: true,
+                // moveOnMouseWheel: true,
             },
             {
+                type: 'slider',
+                brushSelect: false,
+                realtime: true,
+                bottom: 0,
                 start: 0,
+                handleSize: 30,
                 end: 100,
-                bottom: 30
+                height: 20,
+                showDetail: true,
+                fillerColor: '#e8e8e8',
+                backgroundColor: '#ffffff',
+                // zoomOnMouseWheel: false,
+                // moveOnMouseMove: true,
+                // moveOnMouseWheel: true,
             }
         ],
         toolbox: {
-
             feature: {
-                saveAsImage: {}
+                saveAsImage: {},
+                mark: { show: true }
             }
         },
         xAxis: {
@@ -452,6 +504,7 @@ const getCumulativeOptions = (data) => {
             boundaryGap: true,
             data: data.xAxisData,
             axisLabel: {
+                showMinLabel: true,
                 showMaxLabel: true
             }
         },
@@ -470,23 +523,33 @@ const getCumulativeOptions = (data) => {
             {
                 name: 'Planned work time',
                 type: 'line',
-
-                emphasis: {
-                    focus: 'series'
-                },
                 symbol: 'none',
                 step: 'step2',
                 areaStyle: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-                        {
-                            offset: 0,
-                            color: 'rgb(130, 171, 255)',
-                        },
-                        {
-                            offset: 1,
-                            color: 'rgb(255, 255, 255)'
-                        }
-                    ])
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            {
+                                offset: 0,
+                                color: 'rgb(130, 171, 255)',
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgb(255, 255, 255)'
+                            }
+                        ])
+                    },
+                    emphasis: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            {
+                                offset: 0,
+                                color: 'rgb(130, 171, 255)',
+                            },
+                            {
+                                offset: 1,
+                                color: 'rgb(255, 255, 255)'
+                            }
+                        ])
+                    }
                 },
                 itemStyle: {
                     normal: {
@@ -514,9 +577,6 @@ const getCumulativeOptions = (data) => {
                         }
                     ])
                 },
-                emphasis: {
-                    focus: 'series'
-                },
                 itemStyle: {
                     normal: {
                         color: '#4D88FF',
@@ -542,9 +602,6 @@ const getCumulativeOptions = (data) => {
                         }
                     ])
                 },
-                emphasis: {
-                    focus: 'series'
-                },
                 itemStyle: {
                     normal: {
                         color: '#ffaecb',
@@ -569,9 +626,6 @@ const getCumulativeOptions = (data) => {
                             color: 'rgb(255, 255, 255)'
                         }
                     ])
-                },
-                emphasis: {
-                    focus: 'series'
                 },
                 itemStyle: {
                     normal: {
@@ -603,9 +657,6 @@ const getCumulativeOptions = (data) => {
             {
                 name: 'Absence pool time worked',
                 type: 'line',
-                emphasis: {
-                    focus: 'series'
-                },
                 areaStyle: {
                     color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
                         {
@@ -631,6 +682,8 @@ const getCumulativeOptions = (data) => {
             {
                 name: 'Expected work time',
                 type: 'line',
+                step: 'step111',
+                silent: true,
                 emphasis: {
                     focus: 'series'
                 },
@@ -646,7 +699,6 @@ const getCumulativeOptions = (data) => {
 
                     }
                 },
-                step: "step2",
                 symbol: "none",
                 data: data.expectedWorkTime
             },
